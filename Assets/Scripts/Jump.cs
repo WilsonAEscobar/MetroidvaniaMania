@@ -19,11 +19,11 @@ public class PlayerJump : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
-            Vector3 jumpMovement = new(0.0f, 1.0f, 0.0f);
+            Vector2 jumpMovement = new(jumpSpeed, jumpForce);
             rb.velocity = jumpMovement * jumpSpeed;
-        }
 
-        transform.Translate(rb.velocity);
+            transform.Translate(jumpMovement);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

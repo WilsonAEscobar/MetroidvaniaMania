@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector3 movement = new Vector3(horizontalInput, 0) * moveSpeed * Time.deltaTime;
+        Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed * Time.deltaTime;
 
         transform.Translate(movement);
     }

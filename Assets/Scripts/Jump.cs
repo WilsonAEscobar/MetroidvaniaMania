@@ -5,11 +5,9 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     public float jumpForce = 5.0f;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
-    public float groundCheckRadius = 0.2f;
+    public float jumpSpeed = 10;
 
-    private bool isGrounded;
+    private bool onGround = false;
     private Rigidbody2D rb;
 
     private void Start()
@@ -19,11 +17,28 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if(Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Vector2 jumpMovement = new(jumpSpeed, jumpForce);
+            rb.velocity = jumpMovement * jumpSpeed;
+
+            transform.Translate(jumpMovement);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = false;
         }
     }
 }

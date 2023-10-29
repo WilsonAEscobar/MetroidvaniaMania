@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
+    private float horizontal;
+    public float speed = 8f;
+    private bool isFacingRight = true;
 
-    // Update is called once per frame
+    [SerializeField] private Rigidbody2D rb;
+
+
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxisRaw("Horizontal");
 
-        Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed * Time.deltaTime;
+    }
 
-        transform.Translate(movement);
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+
+
+    private void Flip()
+    {
+        if(isFacingRight && horizontal <0f || isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
 

@@ -17,9 +17,10 @@ public class LevelSelectBehaviour : MonoBehaviour
         levelPanels[levelNum].SetActive(true);
     }
 
-    public void startLevel()
+    public void startLevel(int levelIndex)
     {
-        SceneManager.LoadScene("Level 1");
+        PlayerPrefs.SetInt("SelectedLevelIndex", levelIndex);
+        SceneManager.LoadScene("CharacterSelection");
     }
 
     public void closePanel(int levelNum)

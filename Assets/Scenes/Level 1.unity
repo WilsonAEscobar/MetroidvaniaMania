@@ -27954,6 +27954,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65deda3b9aa2eb4b913a2b6d3609f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agroRange: 10
+  moveSpeed: 2
+  attackRange: 4
 --- !u!50 &400214755
 Rigidbody2D:
   serializedVersion: 4
@@ -28505,11 +28508,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3196595052498515104, guid: 2ade368649775d248954da9790b1d37a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.21
+      value: 10.73
       objectReference: {fileID: 0}
     - target: {fileID: 3196595052498515104, guid: 2ade368649775d248954da9790b1d37a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.18
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 3196595052498515104, guid: 2ade368649775d248954da9790b1d37a, type: 3}
       propertyPath: m_LocalPosition.z

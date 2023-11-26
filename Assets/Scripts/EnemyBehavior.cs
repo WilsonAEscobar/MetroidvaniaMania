@@ -1,63 +1,114 @@
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    private float speed = 2f;
-    private float leftDistance = 3f; // Maximum distance to the left from the initial position
-    private float rightDistance = 3f; // Maximum distance to the right from the initial position
-    private float groundCheckDistance = 3f;
-
-    private int direction = 1;
-    private Vector2 initialPosition;
+    private Transform player;
+    [SerializeField] float agroRange;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float attackRange;
     private Animator animator;
+    private Vector2 initialPosition;
+    private float leftDistance = 6f; // Maximum distance to the left from the initial position
+    private float rightDistance = 6f; // Maximum distance to the right from the initial position
+
+    Rigidbody2D rb;
 
     void Start()
     {
-        // Store the initial position of the sprite
+        rb = GetComponent<Rigidbody2D>(); //sets rb to the rigidbody on our enemy sprite - set it in the unity editor
+     
         initialPosition = transform.position;
         animator = GetComponent<Animator>();
-        animator.SetTrigger("StartWalk");
+
+
     }
 
     void Update()
     {
-        Move();
-    }
-
-    void Move()
-    {
-        bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, LayerMask.GetMask("Ground"));
-
-        if (isGrounded)
-        {
-            // Use Rigidbody2D to move the GameObject
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed, GetComponent<Rigidbody2D>().velocity.y);
-        }
-
-        // Calculate the boundaries based on the initial position
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        player = playerObject.transform;
         float leftBound = initialPosition.x - leftDistance;
         float rightBound = initialPosition.x + rightDistance;
+        //Check the distance to the player
+        float distToPlayer = Vector2.Distance(transform.position, player.position); //returns the distance between a and b in parameters / transform.position is the enemies position
 
-        // Check if the enemy is out of bounds and change direction
-        if (transform.position.x > rightBound && direction == 1)
+        if (distToPlayer < agroRange && transform.position.x > leftBound && transform.position.x < rightBound)
         {
-            FlipCharacter();
+            //code to chase player
+            ChasePlayer();
+            AttackPlayer();
         }
-        else if (transform.position.x < leftBound && direction == -1)
+        else
         {
-            FlipCharacter();
+            while (distToPlayer > agroRange)
+            {
+                StopChasingPlayer();
+            }
+
         }
     }
 
-    void FlipCharacter()
+    private void StopChasingPlayer()
     {
-        // Flip the character by adjusting the scale
-        Vector2 newScale = transform.localScale;
-        newScale.x *= -1; // Flip the x-scale
-        transform.localScale = newScale;
+        float distToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Change the direction
-        direction *= -1;
-
+        if (distToPlayer > agroRange)
+        {
+            // Player is outside agro distance, allow flipping
+            if (transform.position.x < initialPosition.x - 0.1f)
+            {
+                rb.velocity = new Vector2(moveSpeed, 0);
+                transform.localScale = new Vector2(1, 1);
+            }
+            else if (transform.position.x > initialPosition.x + 0.1f)
+            {
+                rb.velocity = new Vector2(-moveSpeed, 0);
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, 0);
+                animator.SetTrigger("GoIdle");
+            }
+        }
+       else if (distToPlayer < agroRange)
+        {
+            //Player is still within agro distance, don't flip
+            rb.velocity = new Vector2(0, 0);
+            animator.SetTrigger("GoIdle"); 
+            
+        }  
     }
+
+    private void ChasePlayer()
+    {
+        animator.SetTrigger("StartWakeup");
+        if (transform.position.x < player.position.x) //this means we are on the left of the player and want to move right towards the player 
+        {
+            rb.velocity = new Vector2(moveSpeed, 0);
+            transform.localScale = new Vector2(1, 1);
+        }
+        else if (transform.position.x > player.position.x)
+        {
+            rb.velocity = new Vector2(-moveSpeed, 0); // will move -movespeed to the player (left)
+            transform.localScale = new Vector2(-1, 1);
+        }
+        animator.SetTrigger("StartWalk");
+    }
+
+    private void AttackPlayer()
+    {
+        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distToPlayer <= attackRange)
+        {
+            // Attack the player
+            animator.SetTrigger("StartAttack");
+        }
+        /*else
+        {
+            animator.SetTrigger("StartWalk");
+        }*/
+    }
+
+
 }

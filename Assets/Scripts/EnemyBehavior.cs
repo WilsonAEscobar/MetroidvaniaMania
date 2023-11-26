@@ -40,10 +40,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            while (distToPlayer > agroRange)
-            {
-                StopChasingPlayer();
-            }
+            StopChasingPlayer();
 
         }
     }

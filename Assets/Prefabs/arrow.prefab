@@ -165,3 +165,6 @@ MonoBehaviour:
   speed: 6
   projectileLife: 2
   projectileCount: 0
+  playerMovement: {fileID: 0}
+  facingRight: 0
+  damage: 2

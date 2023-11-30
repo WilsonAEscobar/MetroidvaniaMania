@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     public Movement playerMovement;
     public bool facingRight;
 
+    public int damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +50,23 @@ public class Projectile : MonoBehaviour
         
     }
 
+    /* private void OnCollisionEnter2D(Collision2D collision)
+     {
+         if(collision.gameObject.tag == "Enemy")
+         {
+             enemy = collision.gameObject.GetComponent<EnemyController>();
+             enemy.TakeDamage(damage);
+
+         }
+         Destroy(gameObject);
+     }*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.TryGetComponent<EnemyController>(out EnemyController enemyComponent))
         {
-            Destroy(collision.gameObject);
+            enemyComponent.TakeDamage(damage);
         }
         Destroy(gameObject);
+  
     }
 }

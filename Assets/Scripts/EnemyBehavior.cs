@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
     private float leftDistance = 6f; // Maximum distance to the left from the initial position
     private float rightDistance = 6f; // Maximum distance to the right from the initial position
 
+    public int maxHealth = 10;
+    public int health;
+
     Rigidbody2D rb;
 
     void Start()
@@ -19,6 +22,7 @@ public class EnemyController : MonoBehaviour
      
         initialPosition = transform.position;
         animator = GetComponent<Animator>();
+        health = maxHealth;
 
 
     }
@@ -79,7 +83,6 @@ public class EnemyController : MonoBehaviour
 
     private void ChasePlayer()
     {
-        animator.SetTrigger("StartWakeup");
         if (transform.position.x < player.position.x) //this means we are on the left of the player and want to move right towards the player 
         {
             rb.velocity = new Vector2(moveSpeed, 0);
@@ -105,6 +108,16 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetTrigger("StartWalk");
         }*/
+    }
+ 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

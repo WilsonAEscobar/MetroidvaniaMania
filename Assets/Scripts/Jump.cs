@@ -39,12 +39,13 @@ public class Jump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isJumping = true;
             jumpCounter = 0;
-            animator.SetTrigger("startJump");
+            
 
         }
 
         if(rb.velocity.y > 0 && isJumping)
         {
+            animator.SetTrigger("startJump");
             jumpCounter += Time.deltaTime;
             if (jumpCounter > jumpTime) { isJumping = false; }
 

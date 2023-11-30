@@ -26,6 +26,10 @@ public class Movement : MonoBehaviour
     void Update()
     {
         input = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("startAttack");
+        }
     
     }
 
@@ -88,8 +92,6 @@ public class Movement : MonoBehaviour
             transform.Rotate(0, -180, 0);
             flippedLeft = true;
         }
-        /*Vector3 localScale = transform.localScale;
-        localScale.x = isFacingRight ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
-        transform.localScale = localScale;*/
+
     }
 }

@@ -29046,7 +29046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4022699039773843358, guid: 2adb0862a36c4da419b5f0c5df93a020, type: 3}
   launchPoint: {fileID: 2088511726}
-  shootTime: 0.5
+  shootTime: 1
   shootCounter: 0
 --- !u!1 &2078941637
 GameObject:
@@ -29104,7 +29104,7 @@ Transform:
   m_GameObject: {fileID: 2088511725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.403, y: -0.244, z: 0}
+  m_LocalPosition: {x: 0.813, y: 0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29118,13 +29118,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3901246258406075058, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901246258406075058, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
+      propertyPath: facingRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901246258406075058, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1977719348}
+    - target: {fileID: 3901246258406075058, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
+      propertyPath: projectileLife
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901246258406075058, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
+      propertyPath: projectileCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6150475086022631922, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.431
+      value: -3.54
       objectReference: {fileID: 0}
     - target: {fileID: 6150475086022631922, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.176
+      value: -5.72
       objectReference: {fileID: 0}
     - target: {fileID: 6150475086022631922, guid: 26deb2f1bcb892e4aafde0ad22e04268, type: 3}
       propertyPath: m_LocalPosition.z

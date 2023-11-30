@@ -1,38 +1,95 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private float horizontal;
+    private float input;
     public float speed = 8f;
-    private bool isFacingRight = true;
+    public bool flippedLeft;
+    public bool facingRight;
+    private Animator animator;
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    public LayerMask groundLayer;
 
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-
+        input = Input.GetAxisRaw("Horizontal");
+    
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-    }
-
-
-
-    private void Flip()
-    {
-        if(isFacingRight && horizontal <0f || isFacingRight && horizontal > 0f)
+        if (KBCounter <= 0)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            rb.velocity = new Vector2(input * speed, rb.velocity.y);
+        }
+        else
+        {
+
+            if (KnockFromRight == true)
+            {
+                rb.velocity = new Vector2(-KBForce, KBForce); //if knocked back from the right, then move -KBforce which would be left
+            }
+            if (KnockFromRight == false)
+            {
+                rb.velocity = new Vector2(KBForce, KBForce); //vice versa for if knocked back from left
+            }
+            KBCounter -= Time.deltaTime;
+        }
+
+        if (input < 0)
+        {
+            facingRight = false;
+            FlipCharacter(false);
+            animator.SetTrigger("startWalk");
+        }
+        else if (input > 0)
+        {
+            facingRight = true;
+            FlipCharacter(true);
+            animator.SetTrigger("startWalk");
+        }
+        else if (input == 0)
+        {
+            animator.SetTrigger("startIdle");
+        }
+
+        if (input < 0)
+        {
+            FlipCharacter(false);
+        }
+        else if (input > 0)
+        {
+            FlipCharacter(true);
         }
     }
-}
 
+    void FlipCharacter(bool isFacingRight)
+    {
+        if(flippedLeft && facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = false;
+        }
+        if(!flippedLeft && !facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = true;
+        }
+        /*Vector3 localScale = transform.localScale;
+        localScale.x = isFacingRight ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
+        transform.localScale = localScale;*/
+    }
+}

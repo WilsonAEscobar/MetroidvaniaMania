@@ -11,11 +11,13 @@ public class Jump : MonoBehaviour
     [SerializeField] int jumpPower = 10;
     [SerializeField] float fallMultiplier = 4f;
     [SerializeField] float jumpMultiplier = 3f;
+    private Animator animator;
 
 
     public Transform groundCheck;
     public LayerMask groundLayer;
     Vector2 vecGravity;
+
 
     bool isJumping;
     float jumpCounter;
@@ -25,6 +27,8 @@ public class Jump : MonoBehaviour
     {
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -35,6 +39,7 @@ public class Jump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isJumping = true;
             jumpCounter = 0;
+            animator.SetTrigger("startJump");
 
         }
 

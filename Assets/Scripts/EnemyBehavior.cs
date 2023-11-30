@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private Transform player;
+    public Transform player;
     [SerializeField] float agroRange;
     [SerializeField] float moveSpeed;
     [SerializeField] float attackRange;
@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private Vector2 initialPosition;
     private float leftDistance = 6f; // Maximum distance to the left from the initial position
     private float rightDistance = 6f; // Maximum distance to the right from the initial position
+    public GameObject playerPrefab;
 
     public int maxHealth = 10;
     public int health;

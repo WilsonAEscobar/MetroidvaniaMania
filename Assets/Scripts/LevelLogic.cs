@@ -5,11 +5,17 @@ using UnityEngine;
 public class LevelLogic : MonoBehaviour
 {
     public GameObject[] characterPrefabs; // Array of characters
-    //Vector2 startPosition = new Vector2(-6.53f, -3.61f); // specifies the start position for the sprites - probably won't use these
-    //Quaternion startRotation = Quaternion.identity; // specifies the start rotation for the sprite - probably not gonna mess with this
+
+    public GameObject enemyPrefab;
+    public Transform[] spawnPoints;
+    public int numberOfEnemies = 5;
+    public float spawnDelay = 2f;
+
+    public GameObject player;
 
     void Start()
     {
+
         int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
 
         GameObject selectedCharacter = characterPrefabs[selectedCharacterIndex];
@@ -23,6 +29,8 @@ public class LevelLogic : MonoBehaviour
             }
         }
     }
+
+   
 
     // Update is called once per frame
     void Update()

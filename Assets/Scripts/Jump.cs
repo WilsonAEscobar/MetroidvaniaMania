@@ -45,7 +45,7 @@ public class Jump : MonoBehaviour
 
         if(rb.velocity.y > 0 && isJumping)
         {
-            animator.SetTrigger("startJump");
+            animator.SetTrigger("Jump");
             jumpCounter += Time.deltaTime;
             if (jumpCounter > jumpTime) { isJumping = false; }
 

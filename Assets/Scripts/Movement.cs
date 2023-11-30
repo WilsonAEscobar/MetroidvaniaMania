@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
         input = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Fire1"))
         {
-            animator.SetTrigger("startAttack");
+            animator.SetTrigger("Attack");
         }
     
     }
@@ -57,17 +57,17 @@ public class Movement : MonoBehaviour
         {
             facingRight = false;
             FlipCharacter(false);
-            animator.SetTrigger("startWalk");
+            animator.SetTrigger("Move");
         }
         else if (input > 0)
         {
             facingRight = true;
             FlipCharacter(true);
-            animator.SetTrigger("startWalk");
+            animator.SetTrigger("Move");
         }
         else if (input == 0)
         {
-            animator.SetTrigger("startIdle");
+            animator.SetTrigger("Idle");
         }
 
         if (input < 0)

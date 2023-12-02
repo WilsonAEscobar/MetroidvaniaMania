@@ -50,16 +50,7 @@ public class Projectile : MonoBehaviour
         
     }
 
-    /* private void OnCollisionEnter2D(Collision2D collision)
-     {
-         if(collision.gameObject.tag == "Enemy")
-         {
-             enemy = collision.gameObject.GetComponent<EnemyController>();
-             enemy.TakeDamage(damage);
 
-         }
-         Destroy(gameObject);
-     }*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<EnemyController>(out EnemyController enemyComponent))

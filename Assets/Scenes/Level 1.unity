@@ -27497,6 +27497,8 @@ GameObject:
   - component: {fileID: 231380497}
   - component: {fileID: 231380505}
   - component: {fileID: 231380504}
+  - component: {fileID: 231380506}
+  - component: {fileID: 231380507}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
@@ -27619,11 +27621,12 @@ Transform:
   m_GameObject: {fileID: 231380496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.54, y: -3.376, z: 0}
+  m_LocalPosition: {x: -0.33, y: -3.376, z: 0}
   m_LocalScale: {x: 11.5136, y: 11.008, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1803401514}
+  - {fileID: 1477622662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &231380504
@@ -27699,6 +27702,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &231380506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231380496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed342643995f1942aa485c99d73d3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1477622662}
+  attackRange: 0.7
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 5
+--- !u!114 &231380507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231380496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444013720888378429c9e0d10b8f5022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 0
 --- !u!4 &657468201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
@@ -28120,6 +28155,10 @@ PrefabInstance:
     - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_Name
       value: Mushroom (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y
@@ -28573,6 +28612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.015686
@@ -28630,6 +28673,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+--- !u!1 &1477622661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477622662}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1477622662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477622661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.047, y: -0.003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 231380502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1512625504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28641,6 +28715,10 @@ PrefabInstance:
     - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_Name
       value: Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y
@@ -28711,6 +28789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.015686
@@ -28779,6 +28861,10 @@ PrefabInstance:
     - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_Name
       value: Mushroom (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y
@@ -29023,7 +29109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811990813}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemySpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29199,6 +29285,10 @@ PrefabInstance:
     - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_Name
       value: Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
       propertyPath: m_LocalScale.y

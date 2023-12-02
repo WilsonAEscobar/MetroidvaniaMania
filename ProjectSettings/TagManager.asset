@@ -13,10 +13,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Enemies
+  - Map
+  - Background
+  - Decorations
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2676590425
+    locked: 0
+  - name: Decorations
+    uniqueID: 1041546061
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 4285308473
     locked: 0

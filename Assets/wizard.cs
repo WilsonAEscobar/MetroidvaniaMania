@@ -56,11 +56,11 @@ public class Wizard: MonoBehaviour
             myAnimator.SetTrigger(jump_anim);
         }
         
-        if (Input.GetMouseButtonUp(0))
-        {
-            myAnimator.SetTrigger(release_anim);
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    myAnimator.SetTrigger(release_anim);
 
-        }
+        //}
 
         if (Input.GetMouseButton(0))
         {

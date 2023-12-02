@@ -27496,8 +27496,9 @@ GameObject:
   - component: {fileID: 231380499}
   - component: {fileID: 231380498}
   - component: {fileID: 231380497}
+  - component: {fileID: 231380503}
   m_Layer: 0
-  m_Name: Elf
+  m_Name: Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27518,7 +27519,7 @@ MonoBehaviour:
   jumpTime: 0
   jumpPower: 10
   fallMultiplier: 5
-  jumpMultiplier: 19
+  jumpMultiplier: 3
   groundCheck: {fileID: 1803401514}
   groundLayer:
     serializedVersion: 2
@@ -27606,9 +27607,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.5}
-  m_Direction: 1
+  m_Offset: {x: 0.012076308, y: 0.013925552}
+  m_Size: {x: 0.43241453, y: 1.5096488}
+  m_Direction: 0
 --- !u!212 &231380501
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27650,8 +27651,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.09019607, g: 1, b: 0.21885307, a: 1}
+  m_Sprite: {fileID: 733556034, guid: 593ea2e52adffd246943c82a3228f016, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -27670,13 +27671,34 @@ Transform:
   m_GameObject: {fileID: 231380496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.53, y: -3.63, z: 0}
+  m_LocalPosition: {x: -4.636, y: -3.537, z: 0}
   m_LocalScale: {x: 1.5375, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1803401514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &231380503
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231380496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a39f402283e7f654a98e8b5e815d9bf2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &657468201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1925131341150478159, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
@@ -28476,9 +28498,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefabs:
+  - {fileID: 231380496}
   - {fileID: 1977719343}
   - {fileID: 856551972}
-  - {fileID: 231380496}
   enemyPrefab: {fileID: 1810872080838816597, guid: c36b58249ecf27f428019f09fb2815bb, type: 3}
   spawnPoints:
   - {fileID: 0}
@@ -28951,7 +28973,7 @@ Transform:
   m_GameObject: {fileID: 1803401513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.079, y: -0.42, z: 0}
+  m_LocalPosition: {x: -0.062, y: -0.682, z: 0}
   m_LocalScale: {x: 0.43759376, y: 0.010368288, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

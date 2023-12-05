@@ -1,69 +1,92 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class wizard: MonoBehaviour
+public class WizardMovement : MonoBehaviour
 {
-    Animator myAnimator;
-    bool facingRight = true;
-    const string walk_anim = "Move";
-    const string jump_anim = "Jump";
-    const string attack_anim = "Attack";
-    void Start()
+    private float input;
+    public float speed = 8f;
+    public bool flippedLeft;
+    public bool facingRight;
+    private Animator animator;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    public LayerMask groundLayer;
+
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
+
+    private void Start()
     {
-        myAnimator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
-    private void Update() {
-        if (Input.GetKey(KeyCode.D))
-        {
-            
-            if (facingRight != true)
-                {
-                    facingRight = true;
-                    Flip();
-                }
-            myAnimator.SetTrigger(walk_anim);
-            
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-        {
-           
-            if (facingRight==true)
-            {
-                Flip();
-                facingRight = false;
-            }
-            myAnimator.SetTrigger(walk_anim);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            
-            if (Input.GetKey(KeyCode.A)&&facingRight == true)
-            {
-                facingRight = false;
-                Flip();
-                myAnimator.SetTrigger(jump_anim);
-            }
-            if (Input.GetKeyDown(KeyCode.D) && facingRight == false)
-            {
-                Flip();
-                facingRight = true;
-                myAnimator.SetTrigger(jump_anim);
-            }
-            myAnimator.SetTrigger(jump_anim);
-        }
-        if (Input.GetMouseButtonDown(0)) {
-            myAnimator.SetTrigger(attack_anim);
-        }
-    }
-
-    void Flip()
+    void Update()
     {
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        input = Input.GetAxisRaw("Horizontal");
     }
 
+    private void FixedUpdate()
+    {
+        if (KBCounter <= 0)
+        {
+            rb.velocity = new Vector2(input * speed, rb.velocity.y);
+        }
+        else
+        {
+
+            if (KnockFromRight == true)
+            {
+                rb.velocity = new Vector2(-KBForce, KBForce); //if knocked back from the right, then move -KBforce which would be left
+            }
+            if (KnockFromRight == false)
+            {
+                rb.velocity = new Vector2(KBForce, KBForce); //vice versa for if knocked back from left
+            }
+            KBCounter -= Time.deltaTime;
+        }
+
+        if (input < 0)
+        {
+            facingRight = false;
+            FlipCharacter(false);
+            animator.SetTrigger("Move");
+        }
+        else if (input > 0)
+        {
+            facingRight = true;
+            FlipCharacter(true);
+            animator.SetTrigger("Move");
+        }
+        else if (input == 0)
+        {
+            animator.SetTrigger("Idle");
+        }
+
+        if (input < 0)
+        {
+            FlipCharacter(false);
+        }
+        else if (input > 0)
+        {
+            FlipCharacter(true);
+        }
+    }
+
+    void FlipCharacter(bool isFacingRight)
+    {
+        if (flippedLeft && facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = false;
+        }
+        if (!flippedLeft && !facingRight)
+        {
+            transform.Rotate(0, -180, 0);
+            flippedLeft = true;
+        }
+
+    }
 }

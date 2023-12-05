@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class WizardProjectile : MonoBehaviour
 {
     public Rigidbody2D projectileRB;
     public float speed;
@@ -10,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float projectileLife;
     public float projectileCount;
 
-    public Movement playerMovement;
+    public WizardMovement playerMovement;
     public bool facingRight;
 
     public int damage;
@@ -19,7 +17,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         projectileCount = projectileLife;
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<WizardMovement>();
         facingRight = playerMovement.facingRight;
         if (!facingRight)
         {
@@ -31,7 +29,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         projectileCount -= Time.deltaTime;
-        if(projectileCount <= 0)
+        if (projectileCount <= 0)
         {
             Destroy(gameObject);
         }
@@ -47,7 +45,7 @@ public class Projectile : MonoBehaviour
         {
             projectileRB.velocity = new Vector2(-speed, projectileRB.velocity.y); //moves arrow to left
         }
-        
+
     }
 
 
@@ -58,6 +56,6 @@ public class Projectile : MonoBehaviour
             enemyComponent.TakeDamage(damage);
         }
         Destroy(gameObject);
-  
+
     }
 }

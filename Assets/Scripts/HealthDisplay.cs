@@ -7,19 +7,24 @@ public class HealthDisplay : MonoBehaviour
 {
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI scoreText;
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     public float startTime = 0f; 
     private float currentTime;
-    // Start is called before the first frame update
+    private GameObject playerObject;
+
     void Start()
     {
         currentTime = startTime;
+    
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = playerObject.GetComponent<PlayerHealth>();
         currentTime += Time.deltaTime;
+
         if (playerHealth != null && healthText != null)
         {
             // Update the TextMeshPro text with the player's health

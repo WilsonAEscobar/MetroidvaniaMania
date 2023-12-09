@@ -11,10 +11,10 @@ public class LevelLogic : MonoBehaviour
     public int numberOfEnemies = 5;
     public float spawnDelay = 2f;
 
-    public GameObject player;
 
     void Start()
     {
+        SpawnEnemies();
 
         int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
 
@@ -30,7 +30,17 @@ public class LevelLogic : MonoBehaviour
         }
     }
 
-   
+    void SpawnEnemies()
+    {
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            Transform spawnPoint = spawnPoints[i];
+            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+
+
 
     // Update is called once per frame
     void Update()

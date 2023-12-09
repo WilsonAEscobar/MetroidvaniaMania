@@ -12,10 +12,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     public LayerMask groundLayer;
 
-    public float KBForce;
     public float KBCounter;
     public float KBTotalTime;
-
+    public float KBForce;
     public bool KnockFromRight;
 
     private void Start()
@@ -26,10 +25,6 @@ public class Movement : MonoBehaviour
     void Update()
     {
         input = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("Attack");
-        }
     
     }
 
@@ -80,7 +75,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void FlipCharacter(bool isFacingRight)
+    public void FlipCharacter(bool isFacingRight)
     {
         if(flippedLeft && facingRight)
         {
@@ -94,4 +89,5 @@ public class Movement : MonoBehaviour
         }
 
     }
+
 }

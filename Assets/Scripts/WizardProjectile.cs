@@ -8,7 +8,7 @@ public class WizardProjectile : MonoBehaviour
     public float projectileLife;
     public float projectileCount;
 
-    public WizardMovement playerMovement;
+    public Movement playerMovement;
     public bool facingRight;
 
     public int damage;
@@ -17,7 +17,7 @@ public class WizardProjectile : MonoBehaviour
     void Start()
     {
         projectileCount = projectileLife;
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<WizardMovement>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
         facingRight = playerMovement.facingRight;
         if (!facingRight)
         {

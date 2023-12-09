@@ -8,10 +8,24 @@ public class EnemyDamage : MonoBehaviour
     public PlayerHealth playerHealth;
     public Movement playerMovement;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            // Check the type of player movement script
+            playerMovement = playerObject.GetComponent<Movement>(); 
+            playerHealth = playerObject.GetComponent<PlayerHealth>();
+
+            Debug.Log("EnemyDamage script assigned to player: " + playerObject.name);
+        }
+        else
+        {
+            Debug.LogError("Player object not found in the scene!");
+        }
+
     }
 
     // Update is called once per frame

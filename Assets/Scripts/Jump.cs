@@ -31,6 +31,7 @@ public class Jump : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+
     private void Update()
     {
         
@@ -77,6 +78,7 @@ public class Jump : MonoBehaviour
         }
         
     }
+    
 
     bool isGrounded()
     {

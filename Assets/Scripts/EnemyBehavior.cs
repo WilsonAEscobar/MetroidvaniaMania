@@ -113,10 +113,11 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
+        LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
         if (health <= 0)
         {
             Destroy(gameObject);
+            levelLogic.enemiesKilled();
         }
     }
 

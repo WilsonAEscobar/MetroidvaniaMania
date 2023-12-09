@@ -32,4 +32,5 @@ public class HealthDisplay : MonoBehaviour
         }
         scoreText.text = "Score: " + currentTime.ToString();
     }
+
 }

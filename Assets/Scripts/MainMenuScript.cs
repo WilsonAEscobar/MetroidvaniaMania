@@ -11,6 +11,10 @@ public class MainMenuBehaviour : MonoBehaviour
         SceneManager.LoadScene("LevelSelection");
     }
 
+    public void quitGame()
+    {
+
+    }
     // Update is called once per frame
     void Update()
     {

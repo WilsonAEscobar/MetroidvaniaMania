@@ -10,10 +10,16 @@ public class LevelLogic : MonoBehaviour
     public Transform[] spawnPoints;
     public int numberOfEnemies = 5;
     public float spawnDelay = 2f;
+    public int score = 0;
+    public int enemiesK = 0;
+    private float currentTime;
+    public int startTime = 0;
 
 
     void Start()
     {
+        currentTime = startTime;
+
         SpawnEnemies();
 
         int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
@@ -40,11 +46,22 @@ public class LevelLogic : MonoBehaviour
     }
 
 
+    public void enemiesKilled()
+    {
+        enemiesK++;
+    }
+    public void calculateScore()
+    {
+        float timeMultiplier = 1000; 
+        float timeBasedScore = Mathf.Max(0, (timeMultiplier / currentTime));
 
+        score = (enemiesK * 15)+ Mathf.RoundToInt(timeBasedScore);
+ 
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        currentTime += Time.deltaTime;
     }
 }

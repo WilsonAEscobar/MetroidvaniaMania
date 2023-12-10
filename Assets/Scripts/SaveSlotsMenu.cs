@@ -13,11 +13,14 @@ public class SaveSlotsMenu : MonoBehaviour
     public void setSaveID(int saveID)
     {
         SaveID.saveID = saveID;
+        PlayerPrefs.SetInt("SlotSaved" + SaveID.saveID, 1);
     }
     
-    public void loadGame()
+    public void loadGame(int saveIDSlot)
     {
+        setSaveID(saveIDSlot);
         SceneManager.LoadScene("MainMenu");
+        Debug.Log("This is the current SaveID: " + SaveID.saveID);
     }
 
     public void Update()
@@ -62,6 +65,12 @@ public class SaveSlotsMenu : MonoBehaviour
     public void ClearSave(int saveID)
     {
         PlayerPrefs.DeleteKey("SlotSaved" + saveID);
+        for (int levelID = 0; levelID < 5; levelID++)
+        {
+            string highScoreKey = $"HighScore_SaveID_{saveID}_LevelID_{levelID}";
+            SaveManager.SetHighScore(saveID, levelID, 0);
+            PlayerPrefs.DeleteKey(highScoreKey);
+        }
     }
 
 }

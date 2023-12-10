@@ -11,9 +11,9 @@ public class MainMenuBehaviour : MonoBehaviour
         SceneManager.LoadScene("LevelSelection");
     }
 
-    public void quitGame()
+    public void goSaveSlots()
     {
-
+        SceneManager.LoadScene("SaveSlots");
     }
     // Update is called once per frame
     void Update()

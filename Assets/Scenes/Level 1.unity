@@ -28621,7 +28621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreDisplayCanvas: {fileID: 177978592}
-  scoreText: {fileID: 305510732}
+  scoreText: {fileID: 2117819390}
+  HighScoreText: {fileID: 305510732}
   currentScore: 0
 --- !u!61 &977944706
 BoxCollider2D:

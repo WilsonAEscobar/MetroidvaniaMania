@@ -8,9 +8,20 @@ public class EndLevelFlag : MonoBehaviour
 {
     public GameObject scoreDisplayCanvas;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI HighScoreText;
     public int currentScore;
 
+    private int level;
+    private int currentHighScore;
+
     // Start is called before the first frame update
+    void Start()
+    {
+        // Move the PlayerPrefs and SaveManager calls to Start
+        level = PlayerPrefs.GetInt("SelectedLevelIndex", 0);
+        currentHighScore = SaveManager.GetHighScoreForCurrentLevel(level);
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         Time.timeScale = 0f; // Freeze the level
@@ -18,20 +29,25 @@ public class EndLevelFlag : MonoBehaviour
         // Access the LevelLogic script to get the player's score
         LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
         scoreDisplayCanvas.gameObject.SetActive(true);
+
         if (other.CompareTag("Player"))
         {
             levelLogic.calculateScore();
             currentScore = levelLogic.score;
-            
+
+            // Update the high score in PlayerPrefs if the current score is higher
+            if (currentScore > currentHighScore)
+            {
+                SaveManager.SetHighScoreForCurrentLevel(level, currentScore);
+            }
+
+            // Display scores
             ScorePopUp popupScript = FindObjectOfType<ScorePopUp>();
             if (popupScript != null)
             {
                 popupScript.DisplayScore(currentScore, scoreText);
+                popupScript.DisplayHighScore(currentHighScore, HighScoreText);
             }
-            
-           
-      
-            
         }
     }
 }

@@ -13,6 +13,11 @@ public class ScorePopUp : MonoBehaviour
         // Update the score text with the provided score
         scoreText.text = "Score: " + score;
     }
+    public void DisplayHighScore(int score, TextMeshProUGUI scoreText)
+    {
+        // Update the score text with the provided score
+        scoreText.text = "HighScore: " + score;
+    }
     public void AcknowledgePopup()
     {
         scoreDisplayCanvas.gameObject.SetActive(false);

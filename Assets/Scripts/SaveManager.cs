@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static int GetHighScore(int saveID, int levelID)
     {
         string key = $"HighScore_SaveID_{saveID}_LevelID_{levelID}";
@@ -16,9 +15,11 @@ public class SaveManager : MonoBehaviour
         string key = $"HighScore_SaveID_{saveID}_LevelID_{levelID}";
         PlayerPrefs.SetInt(key, score);
         PlayerPrefs.Save();  // Save PlayerPrefs immediately
+
+        
     }
 
-    public void SetHighScoreForCurrentLevel(int levelID, int score)
+    public static void SetHighScoreForCurrentLevel(int levelID, int score)
     {
         int saveID = SaveID.saveID;
 
@@ -26,12 +27,10 @@ public class SaveManager : MonoBehaviour
         SaveManager.SetHighScore(saveID, levelID, score);
     }
 
-    public int GetHighScoreForCurrentLevel(int levelID)
+    public static int GetHighScoreForCurrentLevel(int levelID)
     {
         int saveID = SaveID.saveID;
-
-        // Get the high score for the current level and save slot
-        return SaveManager.GetHighScore(saveID, levelID);
+        return GetHighScore(saveID, levelID);
     }
 
     // Example method to demonstrate how to use high scores
@@ -45,4 +44,5 @@ public class SaveManager : MonoBehaviour
             SetHighScoreForCurrentLevel(levelID, newScore);
         }
     }
+
 }

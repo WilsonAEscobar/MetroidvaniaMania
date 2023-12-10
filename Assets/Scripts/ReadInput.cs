@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using MySql.Data.MySqlClient;
 
 public class ReadInput : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ReadInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DatabaseManager.Instance.Initialize();
     }
 
     // Update is called once per frame
@@ -35,16 +36,36 @@ public class ReadInput : MonoBehaviour
         
     }
 
-    public void ReadStringInput(string s)
-    {
-        s = usernameField.text;
-        input = s;
-        Debug.Log("Setting PlayerPrefs value: " + input);
-        PlayerPrefs.SetString("SaveSlotUsername"+SaveID.saveID, input);
-    }
-
     public void goHome()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ValidateInput()
+    {
+        input = usernameField.text;
+        if (IsUsernameAvailable(input))
+        {
+            Debug.Log("Username is available. Inserting into the database.");
+            InsertPlayerIntoDatabase(input);
+            PlayerPrefs.SetString("SaveSlotUsername"+SaveID.saveID, input);
+
+        }
+        else
+        {
+            Debug.Log("Username is already taken. Please choose another one.");
+        }
+    }
+
+    private bool IsUsernameAvailable(string username)
+    {
+        // Check if the username exists in the database
+        return DatabaseManager.Instance.CheckUsernameAvailability(username);
+    }
+
+    private void InsertPlayerIntoDatabase(string username)
+    {
+        // Insert a new player into the database
+        DatabaseManager.Instance.InsertPlayer(username);
     }
 }

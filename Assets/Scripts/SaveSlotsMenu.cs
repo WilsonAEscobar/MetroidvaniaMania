@@ -65,6 +65,7 @@ public class SaveSlotsMenu : MonoBehaviour
     public void ClearSave(int saveID)
     {
         PlayerPrefs.DeleteKey("SlotSaved" + saveID);
+        PlayerPrefs.DeleteKey("SaveSlotUsername" + saveID);
         for (int levelID = 0; levelID < 5; levelID++)
         {
             string highScoreKey = $"HighScore_SaveID_{saveID}_LevelID_{levelID}";

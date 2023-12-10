@@ -10,6 +10,11 @@ public class MainMenuBehaviour : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelection");
     }
+    
+    public void loadSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
 
     public void goSaveSlots()
     {

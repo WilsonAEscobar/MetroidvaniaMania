@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using MySql.Data.MySqlClient;
 using UnityEngine;
+using System.Collections.Generic;
 public class DatabaseManager : MonoBehaviour
 {
     private string connectionString; // Connection string for MySQL database
@@ -197,5 +198,49 @@ public class DatabaseManager : MonoBehaviour
         {
             Debug.LogError("Error deleting player and scores: " + e.Message);
         }
+    }
+
+    public List<PlayerScoreData> GetTopScoresForLevel(int level)
+    {
+        List<PlayerScoreData> topScores = new List<PlayerScoreData>();
+
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    SELECT p.username, ps.highScore
+                    FROM playerScores ps
+                    JOIN players p ON ps.playerID = p.playerID
+                    WHERE ps.levelID = @level
+                    ORDER BY ps.highScore DESC
+                    LIMIT 10";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@level", level);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string username = reader.GetString(0);
+                            int highScore = reader.GetInt32(1);
+
+                            PlayerScoreData scoreData = new PlayerScoreData(username, highScore);
+                            topScores.Add(scoreData);
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error fetching top scores: " + e.Message);
+        }
+
+        return topScores;
     }
 }

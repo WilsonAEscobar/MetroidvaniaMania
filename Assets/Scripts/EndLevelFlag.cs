@@ -17,7 +17,6 @@ public class EndLevelFlag : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Move the PlayerPrefs and SaveManager calls to Start
         level = PlayerPrefs.GetInt("SelectedLevelIndex", 0);
         currentHighScore = SaveManager.GetHighScoreForCurrentLevel(level);
     }
@@ -28,10 +27,11 @@ public class EndLevelFlag : MonoBehaviour
 
         // Access the LevelLogic script to get the player's score
         LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
-        scoreDisplayCanvas.gameObject.SetActive(true);
+        
 
         if (other.CompareTag("Player"))
         {
+            scoreDisplayCanvas.gameObject.SetActive(true);
             levelLogic.calculateScore();
             currentScore = levelLogic.score;
 
@@ -39,6 +39,7 @@ public class EndLevelFlag : MonoBehaviour
             if (currentScore > currentHighScore)
             {
                 SaveManager.SetHighScoreForCurrentLevel(level, currentScore);
+                DatabaseManager.Instance.InsertPlayerScore(PlayerPrefs.GetString("SaveSlotUsername" + SaveID.saveID), level, currentScore, PlayerPrefs.GetFloat("CurrentTime" + SaveID.saveID));
             }
 
             // Display scores

@@ -10,12 +10,10 @@ public class ScorePopUp : MonoBehaviour
     // Start is called before the first frame update
     public void DisplayScore(int score, TextMeshProUGUI scoreText)
     {
-        // Update the score text with the provided score
         scoreText.text = "Score: " + score;
     }
     public void DisplayHighScore(int score, TextMeshProUGUI scoreText)
     {
-        // Update the score text with the provided score
         scoreText.text = "HighScore: " + score;
     }
     public void AcknowledgePopup()

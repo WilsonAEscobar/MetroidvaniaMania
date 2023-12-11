@@ -64,8 +64,12 @@ public class SaveSlotsMenu : MonoBehaviour
 
     public void ClearSave(int saveID)
     {
+        DatabaseManager databaseManagerInstance = DatabaseManager.Instance;
+        databaseManagerInstance.DeletePlayerAndScores(PlayerPrefs.GetString("SaveSlotUsername" + saveID));
+
         PlayerPrefs.DeleteKey("SlotSaved" + saveID);
         PlayerPrefs.DeleteKey("SaveSlotUsername" + saveID);
+        PlayerPrefs.DeleteKey("CurrentTime" + saveID);
         for (int levelID = 0; levelID < 5; levelID++)
         {
             string highScoreKey = $"HighScore_SaveID_{saveID}_LevelID_{levelID}";

@@ -30,7 +30,7 @@ public class HealthDisplay : MonoBehaviour
             // Update the TextMeshPro text with the player's health
             healthText.text = "Health: " + playerHealth.health.ToString();
         }
-        scoreText.text = "Score: " + currentTime.ToString();
+        scoreText.text ="Time: " + (Mathf.Round(currentTime * 100) / 100).ToString();
     }
 
 }

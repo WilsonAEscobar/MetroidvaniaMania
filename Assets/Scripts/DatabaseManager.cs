@@ -104,4 +104,98 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError("Error inserting player into the database: " + e.Message);
         }
     }
+
+    public void InsertPlayerScore(string username, int level, int score, float time)
+    {
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Get the playerID based on the username
+                int playerID = GetPlayerID(username, connection);
+
+                if (playerID != -1)
+                {
+                    // Insert or update the player score in the playerScores table
+                    string query = @"
+                    INSERT INTO playerScores (playerID, levelID, highScore, bestTime)
+                    VALUES (@playerID, @levelID, @highScore, @bestTime)
+                    ON DUPLICATE KEY UPDATE
+                    highScore = GREATEST(@highScore, highScore), bestTime = LEAST(@bestTime, bestTime)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@playerID", playerID);
+                        cmd.Parameters.AddWithValue("@levelID", level);
+                        cmd.Parameters.AddWithValue("@highScore", score);
+                        cmd.Parameters.AddWithValue("@bestTime", time);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Error getting playerID for username: " + username);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error inserting/updating player score into the database: " + e.Message);
+        }
+    }
+
+    private int GetPlayerID(string username, MySqlConnection connection)
+    {
+        // Get the playerID based on the username
+        string query = "SELECT playerID FROM players WHERE username = @username";
+        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+        {
+            cmd.Parameters.AddWithValue("@username", username);
+            object result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : -1;
+        }
+    }
+
+    public void DeletePlayerAndScores(string username)
+    {
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                int playerID = GetPlayerID(username, connection);
+
+                if (playerID != -1)
+                {
+                    // Delete entry from playerScores table based on playerID
+                    string deletePlayerScoresQuery = "DELETE FROM playerScores WHERE playerID = @playerID";
+                    using (MySqlCommand deletePlayerScoresCmd = new MySqlCommand(deletePlayerScoresQuery, connection))
+                    {
+                        deletePlayerScoresCmd.Parameters.AddWithValue("@playerID", playerID);
+                        deletePlayerScoresCmd.ExecuteNonQuery();
+                    }
+                    
+                    // Delete entry from players table based on username
+                    string deletePlayerQuery = "DELETE FROM players WHERE username = @username";
+                    using (MySqlCommand deletePlayerCmd = new MySqlCommand(deletePlayerQuery, connection))
+                    {
+                        deletePlayerCmd.Parameters.AddWithValue("@username", username);
+                        deletePlayerCmd.ExecuteNonQuery();
+                    }
+
+                }
+                else
+                {
+                    Debug.LogError("Error getting playerID for username: " + username);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error deleting player and scores: " + e.Message);
+        }
+    }
 }

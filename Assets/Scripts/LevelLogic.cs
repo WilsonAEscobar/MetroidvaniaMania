@@ -56,6 +56,7 @@ public class LevelLogic : MonoBehaviour
         float timeBasedScore = Mathf.Max(0, (timeMultiplier / currentTime));
 
         score = (enemiesK * 15)+ Mathf.RoundToInt(timeBasedScore);
+        PlayerPrefs.SetFloat("CurrentTime" + SaveID.saveID, Mathf.Round(currentTime*100)/100);
  
     }
 

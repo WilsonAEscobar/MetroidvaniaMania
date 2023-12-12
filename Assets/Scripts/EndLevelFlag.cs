@@ -23,7 +23,7 @@ public class EndLevelFlag : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Time.timeScale = 0f; // Freeze the level
+        
 
         // Access the LevelLogic script to get the player's score
         LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
@@ -31,6 +31,8 @@ public class EndLevelFlag : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("Tutorial", 0);
+            Time.timeScale = 0f; // Freeze the level
             scoreDisplayCanvas.gameObject.SetActive(true);
             levelLogic.calculateScore();
             currentScore = levelLogic.score;

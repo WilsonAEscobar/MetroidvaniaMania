@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelLogic : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LevelLogic : MonoBehaviour
 
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
+    public TextMeshProUGUI[] tutorialBoxes;
     public int numberOfEnemies = 5;
     public float spawnDelay = 2f;
     public int score = 0;
@@ -18,6 +20,21 @@ public class LevelLogic : MonoBehaviour
 
     void Start()
     {
+        if(PlayerPrefs.GetInt("Tutorial") == 1)
+        {
+            Debug.Log("Tutorial is ON");
+            for (int i = 0; i<tutorialBoxes.Length; i++)
+            {
+                tutorialBoxes[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for(int i = 0; i < tutorialBoxes.Length; i++)
+            {
+                tutorialBoxes[i].gameObject.SetActive(false);
+            }
+        }
         currentTime = startTime;
 
         SpawnEnemies();

@@ -27,8 +27,18 @@ public class LevelSelectBehaviour : MonoBehaviour
     {
         levelPanels[levelNum].SetActive(false);
     }
+
+    public void tutorialOn()
+    {
+        PlayerPrefs.SetInt("Tutorial", 1);
+        Debug.Log(PlayerPrefs.GetInt("Tutorial"));
+    }
     
-    
+    public void tutorialOff()
+    {
+        PlayerPrefs.SetInt("Tutorial", 0);
+        Debug.Log(PlayerPrefs.GetInt("Tutorial"));
+    }
 
     
 }

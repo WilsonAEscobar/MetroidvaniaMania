@@ -7,11 +7,12 @@ public class LeaderBoard : MonoBehaviour
 {
     public TextMeshProUGUI[] usernameTexts;
     public TextMeshProUGUI[] scoreTexts;
+    public int levelleaderboard;
 
     void Start()
     {
         //Will get the list for level one - just gotta change the value at the end
-        List<PlayerScoreData> topScores = DatabaseManager.Instance.GetTopScoresForLevel(1);
+        List<PlayerScoreData> topScores = DatabaseManager.Instance.GetTopScoresForLevel(levelleaderboard);
 
         for (int i = 0; i < topScores.Count; i++)
         {

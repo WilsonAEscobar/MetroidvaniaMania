@@ -614,7 +614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -362, y: -219}
+  m_AnchoredPosition: {x: -353, y: -199}
   m_SizeDelta: {x: 350.43286, y: 539.31604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191583652
@@ -2375,7 +2375,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1178585848}
   m_HandleRect: {fileID: 1178585847}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6107,7 +6107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 38}
+  m_AnchoredPosition: {x: 34, y: 59}
   m_SizeDelta: {x: 111.672, y: 115.412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138298749
@@ -6186,7 +6186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dcc77b1d442b11646923de7fd34f6f3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a3012093a1b7914b905941312549df7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7741,7 +7741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -299.9999, y: -285.99997}
+  m_AnchoredPosition: {x: 387, y: 12}
   m_SizeDelta: {x: 350.43286, y: 539.31604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569874097
@@ -7980,7 +7980,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 296.4613
+  orthographic size: 293.7179
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

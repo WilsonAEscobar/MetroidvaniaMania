@@ -8,8 +8,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float attackRange;
     private Animator animator;
     private Vector2 initialPosition;
-    private float leftDistance = 6f; // Maximum distance to the left from the initial position
-    private float rightDistance = 6f; // Maximum distance to the right from the initial position
+    //private float leftDistance = 6f; // Maximum distance to the left from the initial position
+    //private float rightDistance = 6f; // Maximum distance to the right from the initial position
 
     public int maxHealth = 10;
     public int health;
@@ -31,12 +31,12 @@ public class EnemyController : MonoBehaviour
     {
         GameObject playerObject = GameObject.FindWithTag("Player");
         player = playerObject.transform;
-        float leftBound = initialPosition.x - leftDistance;
-        float rightBound = initialPosition.x + rightDistance;
+        //float leftBound = initialPosition.x - leftDistance;
+        //float rightBound = initialPosition.x + rightDistance;
         //Check the distance to the player
         float distToPlayer = Vector2.Distance(transform.position, player.position); //returns the distance between a and b in parameters / transform.position is the enemies position
 
-        if (distToPlayer < agroRange && transform.position.x > leftBound && transform.position.x < rightBound)
+        if (distToPlayer < agroRange) //&& transform.position.x > leftBound && transform.position.x < rightBound
         {
             //code to chase player
             ChasePlayer();

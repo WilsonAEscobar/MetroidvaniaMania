@@ -10,6 +10,7 @@ public class EndLevelFlag : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI HighScoreText;
     public int currentScore;
+    public LevelLogic levelLogic;
 
     private int level;
     private int currentHighScore;
@@ -26,7 +27,7 @@ public class EndLevelFlag : MonoBehaviour
         
 
         // Access the LevelLogic script to get the player's score
-        LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
+       // LevelLogic levelLogic = FindObjectOfType<LevelLogic>();
         
 
         if (other.CompareTag("Player"))

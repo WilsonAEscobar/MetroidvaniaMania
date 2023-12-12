@@ -40,6 +40,7 @@ public class LevelLogic : MonoBehaviour
         SpawnEnemies();
 
         int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
+        Debug.Log(PlayerPrefs.GetInt("SelectedCharacterIndex", 0));
 
         GameObject selectedCharacter = characterPrefabs[selectedCharacterIndex];
         selectedCharacter.SetActive(true);
